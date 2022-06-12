@@ -1,13 +1,117 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url("https://fonts.googleapis.com/css2?family=Playball&family=Secular+One&display=swap");
+.App {
+  text-align: center;
+  background-color: #8ec5fc;
+  min-width: 100vw;
+  min-height: 100vh;
+  background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.task-header {
+  color: white;
+  font-size: 30px;
+}
+
+.search {
+  display: flex;
+  margin-top: 30px;
+  padding-left: 50px;
+  border-radius: 10px;
+  position: relative;
+  align-items: center;
+  width: 80%;
+  color: white;
+  font-size: 40px;
+}
+
+.search-input {
+  width: 100%;
+  border-radius: 50px;
+  padding: 20px 50px;
+  border: transparent;
+  transition: 0.2s;
+  background-color: #8bc6ec;
+  background-image: linear-gradient(135deg, #8bc6ec 0%, #9599e2 100%);
+  color: white;
+}
+
+.search-input:focus {
+  box-shadow: transparent;
+  outline: none;
+}
+
+::placeholder {
+  color: white;
+}
+
+.submit {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  margin: 12px;
+  border-radius: 50px;
+  border: none;
+  font-size: 15px;
+  right: 0px;
+}
+.tasks {
+  display: flex;
+  justify-content: space-evenly;
+  width: 80%;
+  flex-wrap: wrap;
+  padding-left: 50px;
+}
+
+.task-item {
+  display: flex;
+  width: 29%;
+  padding: 20px;
+  margin-top: 15px;
+  background-color: #e7eff9;
+  color: blue;
+  border-radius: 5px;
+}
+.task-item-text {
+  flex: 1;
+  padding: 5px;
+  border: none;
+  font-size: 20px;
+}
+
+.icons {
+  margin-left: 10px;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.buttons {
+  margin-top: 20px;
+  padding-left: 25px;
+  border-radius: 10px;
+  /* position: relative; */
+  align-items: center;
+  width: 10%;
+  color: blue;
+  font-size: 15px;
+}
+
+@media (max-width: 700px) {
+  .tasks {
+    width: 90%;
+  }
+  .task-item {
+    width: 100%;
+  }
+  .task-item-text {
+    width: 100%;
+  }
+  .buttons {
+    width: 20%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .task-item {
+    width: 40%;
+  }
 }

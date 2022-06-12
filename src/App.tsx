@@ -1,26 +1,58 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import AddTask from "./components/AddTask";
+import { TaskItem } from "./common/models";
+import TaskList from "./components/TaskList";
+import FilterButton from "./components/FilterButton";
 
-function App() {
+const FILTER_MAP = {
+  All: () => true,
+  Active: (task: TaskItem) => !task.isCompleted,
+  Completed: (task: TaskItem) => task.isCompleted
+};
+
+//returns array of objects
+const FILTER_NAMES = Object.keys(FILTER_MAP);
+
+const App: React.FC = () => {
+  const [task, setTask] = useState<string>("");
+  const [tasks, setTasks] = useState<TaskItem[]>([]);
+  const [filter, setFilter] = useState("All");
+
+  const handleAddTask = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (task) {
+      setTasks([
+        ...tasks,
+        {
+          id: Date.now(),
+          task,
+          isCompleted: false
+        }
+      ]);
+    }
+    setTask("");
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className="App">
+        <span className="task-header">Task Tracker</span>
+        <AddTask task={task} setTask={setTask} handleAddTask={handleAddTask} />
+        {FILTER_NAMES.map((task) => (
+            <FilterButton
+                key={task}
+                task={task}
+                isPressed={task === filter}
+                setFilter={setFilter}
+            />
+        ))}
+
+        {/*tasks.filter(FILTER_MAP[filter]).map((task) => (
+        <TaskList tasks={tasks} setTasks={setTasks} key={task.id} />
+      ))*/}
+        { <TaskList tasks={tasks} setTasks={setTasks} />}
+      </div>
   );
-}
+};
 
 export default App;
